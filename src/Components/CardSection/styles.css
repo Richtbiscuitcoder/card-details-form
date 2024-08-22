@@ -1,21 +1,60 @@
 
 
+.border-box{
+ 
+    width: 50%;
+}
+
 .background {
     height: 100vh;
-    width: 40%;
+    width: 80%;
     position: relative;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .card-front {
     position: absolute;
-    top: 30%;
-    transform: translateY(-30%);
+    top: 25%;
+    transform: translateY(-25%);
     left: 400px;
+    background-image: url('src/assets/images/bg-card-front.png');
+    height: 300px;
+    width: 500px;
+    background-repeat: no-repeat;
 }
 
 .card-back {
     position: absolute;
-    top: 70%;
-    transform: translateY(-70%);
+    top: 72%;
+    transform: translateY(-72%);
     left: 500px;
+    background-image: url('src/assets/images/bg-card-back.png');
+    height: 300px;
+    width: 500px;
+    background-repeat: no-repeat;
+}
+
+.white-ball {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+
+}
+
+.hollow-ball {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid white;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    transform: translate(-50%, -50%);
 }

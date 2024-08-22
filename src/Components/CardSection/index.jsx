@@ -1,19 +1,22 @@
 import React from "react";
 import bgDesktop from "../../assets/images/bg-main-desktop.png";
-import cardFront from "../../assets/images/bg-card-front.png";
-import cardBack from "../../assets/images/bg-card-back.png";
+
 import "./styles.css";
 
 const CardSection = () => {
 
     return (
-    <>
+    <div className="border-box">
         <img src={bgDesktop} alt="background color gradient" className="background" />
-        
-            <img src={cardFront} alt="background color gradient" className="card-front"/>
-            <img src={cardBack} alt="background color gradient" className="card-back"/>
-        
-    </>)
+        <div className="card-front">
+            
+            <div className="white-ball"></div>
+            <div className="hollow-ball"></div>
+        </div>  
+        <div className="card-back">  
+         
+        </div>
+    </div>)
 }
 
 
