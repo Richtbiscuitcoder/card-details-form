@@ -1,5 +1,4 @@
 .grid-container {
-  border: 2px solid red;
   height: 100vh;
   width: 50%;
   display: grid;
@@ -7,6 +6,7 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 3rem;
   overflow: clip;
+  min-width: 750px;
 }
 
 .bg-gradient {
@@ -24,6 +24,7 @@
   width: 447px;
   height: 245px;
   align-self: end;
+  position: relative;
 }
 
 .card-back {
@@ -32,6 +33,68 @@
   grid-row: 2 / 3;
   width: 447px;
   height: 245px;
+  display: flex;
+  align-items: center;
+}
+
+.white-ball {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 22%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.hollow-ball {
+  border: 1px solid green;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid white;
+  position: absolute;
+  top: 22%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.card-num {
+  color: white;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 0.75rem;
+  font-size: large;
+}
+
+.name-exp {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  font-size: large;
+}
+
+.details-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.csv {
+  color: white;
+  /* text-align: center; */
+  width: 100%;
+  letter-spacing: 0.75rem;
+  font-size: large;
+  text-align: end;
+  padding-right: 40px;
 }
 
 /* 
@@ -71,26 +134,4 @@
     background-repeat: no-repeat;
 }
 
-.white-ball {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
-    top: 20%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-
-}
-
-.hollow-ball {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 1px solid white;
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-} */
+ */
