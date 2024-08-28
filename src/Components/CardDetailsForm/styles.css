@@ -12,8 +12,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  width: 400px;
-  /* border: 1px solid black; */
+  width: 500px;
+  /* border: 1px solid black; */;
 }
 
 .exp-cvc {
@@ -32,12 +32,12 @@
 
 .cvc-label {
   /* border: 1px solid blue; */
-  width: 36%;
+  width: 48%;
 }
 
 .exp-label {
   /* border: 1px solid blue; */
-  width: 64%;
+  width: 52%;
 }
 
 .exp-input {
@@ -46,7 +46,7 @@
 }
 
 .card-input {
-  width: 100%;
+  width: 96%;
   /* border: 1px solid purple; */
 }
 
@@ -61,12 +61,29 @@
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  letter-spacing: 2.5px;
+  font-size: 12px;
+  color: hsl(278, 68%, 20%);
 }
 
 input {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   padding: 7px;
   border-radius: 5px;
   border: 1px solid hsl(270, 3%, 87%);
+  letter-spacing: 0.5px;
+}
+
+input:focus {
+  border-image: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  border-image-slice: 1;
+  outline: none;
+  border-radius: 5px; 
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+input::placeholder {
+  color: hsl(270, 3%, 87%);
 }

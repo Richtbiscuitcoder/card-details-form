@@ -13,7 +13,7 @@ const CardSection = () => {
         <div className="details-container">
           <p className="card-num">0000 0000 0000 0000</p>
           <div className="name-exp">
-            <p>Jane Appleseed</p>
+            <p>JANE APPLESEED</p>
             <p>00/00</p>
           </div>
         </div>

@@ -5,6 +5,7 @@ body {
     font-style: normal;
     height: 100vh;
     margin: 0;
+    font-size: 18px;
 
 }
 
@@ -12,4 +13,5 @@ input, button {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 500;
     font-style: normal;
+    font-size: 18px;
 }
