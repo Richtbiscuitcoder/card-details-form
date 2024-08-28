@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: start;
   width: 500px;
-  /* border: 1px solid black; */;
+  /* border: 1px solid black; */
 }
 
 .exp-cvc {
@@ -76,14 +76,27 @@ input {
 }
 
 input:focus {
-  border-image: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  border-image: linear-gradient(
+    to right,
+    hsl(249, 99%, 64%),
+    hsl(278, 94%, 30%)
+  );
   border-image-slice: 1;
   outline: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
 
 input::placeholder {
   color: hsl(270, 3%, 87%);
+}
+
+.alert {
+  color: hsl(0, 100%, 66%);
+  visibility: hidden;
+}
+
+.alert.active {
+  visibility: visible;
 }
