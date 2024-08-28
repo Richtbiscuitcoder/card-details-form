@@ -3,3 +3,9 @@ body {
     font-weight: 500;
     font-style: normal;
 }
+
+input, button {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}

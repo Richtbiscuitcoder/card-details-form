@@ -1,0 +1,72 @@
+.card-form-container {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  /* border: 1px solid rgb(143, 11, 33); */
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 400px;
+  /* border: 1px solid black; */
+}
+
+.exp-cvc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.exp-cvc-labels {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid green; */
+}
+
+.cvc-label {
+  /* border: 1px solid blue; */
+  width: 36%;
+}
+
+.exp-label {
+  /* border: 1px solid blue; */
+  width: 64%;
+}
+
+.exp-input {
+  width: 60px;
+  /* border: 1px solid yellow; */
+}
+
+.card-input {
+  width: 100%;
+  /* border: 1px solid purple; */
+}
+
+.confirm-button {
+  width: 100%;
+  margin-top: 10px;
+  background-color: hsl(278, 68%, 11%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid hsl(270, 3%, 87%);
+}
