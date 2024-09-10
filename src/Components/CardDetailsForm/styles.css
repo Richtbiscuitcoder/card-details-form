@@ -68,7 +68,7 @@ label {
 }
 
 input {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   padding: 7px;
   border-radius: 5px;
   border: 1px solid hsl(270, 3%, 87%);
@@ -95,6 +95,8 @@ input::placeholder {
 .alert {
   color: hsl(0, 100%, 66%);
   visibility: hidden;
+  margin: 5px 0px 10px 0px;
+  font-size: 1rem;
 }
 
 .alert.active {

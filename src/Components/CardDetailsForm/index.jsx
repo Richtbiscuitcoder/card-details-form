@@ -8,9 +8,25 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
     var regName = /^[a-zA-Z]+ [a-zA-Z]+$/
 
     if (!regName.test(input)) {
-      document.querySelector(".alert").classList.toggle("active")
+      document.querySelector(".alert").classList.add("active")
       e.target.focus()
       return false
+    }
+    else {
+      document.querySelector(".alert").classList.remove("active")
+      return true
+    }
+  }
+
+  function handleCardNumberInput(e) {
+    setCardNumber(e.target.value)
+    let input = e.target.value
+    var regCard = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/
+
+    if (!regCard.test(input)) {
+      document.querySelector(".alert").classList.add("active")
+      e.target.focus()
+      console.log(false)
     }
   }
 
@@ -32,14 +48,16 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
         </p>
         <label htmlFor="cardnumber">CARD NUMBER</label>
         <input
-          onChange={(e) => setCardNumber(e.target.value)}
-          type="text"
+          onChange={handleCardNumberInput}          type="text"
           className="card-input"
           id="cardnumber"
           name="cardnumber"
           placeholder="e.g. 1234 5678 9123 0000"
+          required
         />
-       
+        <p className="alert">
+          <small>Please enter your full name (first & last name).</small>
+        </p>
         <div className="exp-cvc-labels">
           <label className="exp-label" htmlFor="expiry">
             EXP. DATE (MM/YY)
@@ -55,6 +73,7 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
             id="expiry"
             name="expiry"
             placeholder="MM"
+            required
           />
           <input
             className="exp-input"
@@ -62,8 +81,9 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
             id="expiry"
             name="expiry"
             placeholder="YY"
+            required
           />
-          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" />
+          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" required />
         </div>
         <input className="confirm-button" type="submit" value="Confirm" />
       </form>
