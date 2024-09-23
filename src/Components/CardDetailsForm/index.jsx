@@ -8,26 +8,35 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
     var regName = /^[a-zA-Z]+ [a-zA-Z]+$/
 
     if (!regName.test(input)) {
-      document.querySelector(".alert").classList.add("active")
+      document.querySelector(".alert-name").classList.add("active")
       e.target.focus()
       return false
     }
     else {
-      document.querySelector(".alert").classList.remove("active")
+      document.querySelector(".alert-name").classList.remove("active")
       return true
     }
   }
 
   function handleCardNumberInput(e) {
-    setCardNumber(e.target.value)
-    let input = e.target.value
+    let cardNumber = e.target.value
+        .replace(/[^\d]/g, '')
+         .slice(0, 16)
+         .replace(/(\d{4})/g, '$1 ')
+         .trim();
+    setCardNumber(cardNumber)
     var regCard = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/
 
-    if (!regCard.test(input)) {
-      document.querySelector(".alert").classList.add("active")
+    if (!regCard.test(cardNumber)) {
+      document.querySelector(".alert-number").classList.add("active")
       e.target.focus()
       console.log(false)
     }
+    else {
+      document.querySelector(".alert-number").classList.remove("active")
+      return true
+    }
+
   }
 
   return (
@@ -43,20 +52,23 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
           placeholder="e.g. Jane Appleseed"
           required
         />
-         <p className="alert">
+         <p className="alert-name">
           <small>Please enter your full name (first & last name).</small>
         </p>
         <label htmlFor="cardnumber">CARD NUMBER</label>
         <input
-          onChange={handleCardNumberInput}          type="text"
+          onChange={handleCardNumberInput}          
+          type="text"
           className="card-input"
           id="cardnumber"
           name="cardnumber"
+          format="#### #### #### ####"
           placeholder="e.g. 1234 5678 9123 0000"
           required
+          maxlength="16"
         />
-        <p className="alert">
-          <small>Please enter your full name (first & last name).</small>
+        <p className="alert-number">
+          <small>Please add a valid 16 digit card number.</small>
         </p>
         <div className="exp-cvc-labels">
           <label className="exp-label" htmlFor="expiry">
