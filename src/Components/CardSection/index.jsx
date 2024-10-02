@@ -3,7 +3,7 @@ import bgDesktop from "../../assets/images/bg-main-desktop.png"
 
 import "./styles.css"
 
-const CardSection = ({ name, cardNumber }) => {
+const CardSection = ({ name, cardNumber, month, year }) => {
   return (
     <div className="grid-container">
       <div className="bg-gradient"></div>
@@ -14,7 +14,7 @@ const CardSection = ({ name, cardNumber }) => {
           <p className="card-num">{cardNumber}</p>
           <div className="name-exp">
             <p>{name}</p>
-            <p>00/00</p>
+            <p>{month}/{year}</p>
           </div>
         </div>
       </div>
