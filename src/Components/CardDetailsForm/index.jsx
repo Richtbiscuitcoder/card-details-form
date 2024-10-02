@@ -1,4 +1,5 @@
-import React from "react"
+
+import React, { useState, useEffect } from 'react';
 import "./styles.css"
 
 const CardDetailsForm = ({ setName, setCardNumber }) => {
@@ -36,8 +37,37 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
       document.querySelector(".alert-number").classList.remove("active")
       return true
     }
-
   }
+
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
+    const [isValid, setIsValid] = useState(true);
+  
+    useEffect(() => {
+      validateExpiry();
+      
+    }, [month, year]);
+  
+    const validateExpiry = () => {
+      if (month.length === 2 && year.length === 2) {
+        let expiryString = `${month}/${year}`;
+        if (!/^\d{2}\/\d{2}$/.test(expiryString)) {
+        const currentDate = new Date();
+        const expiryDate = new Date(
+          parseInt(`20${year}, 10`),
+          parseInt(month, 10) - 1, 1
+        );
+        setIsValid(expiryDate > currentDate);
+      } else {
+        setIsValid(false);
+      }
+    } else {
+      setIsValid(true);
+    }
+  }
+  
+    
+  
 
   return (
     <div className="card-form-container">
@@ -65,13 +95,13 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
           format="#### #### #### ####"
           placeholder="e.g. 1234 5678 9123 0000"
           required
-          maxlength="16"
+          maxLength="16"
         />
         <p className="alert-number">
           <small>Please add a valid 16 digit card number.</small>
         </p>
         <div className="exp-cvc-labels">
-          <label className="exp-label" htmlFor="expiry">
+          <label className="exp-label" htmlFor="expiryMM">
             EXP. DATE (MM/YY)
           </label>
           <label className="cvc-label" htmlFor="cvc">
@@ -82,25 +112,39 @@ const CardDetailsForm = ({ setName, setCardNumber }) => {
           <input
             className="exp-input"
             type="text"
-            id="expiry"
-            name="expiry"
+            id="expiryMM"
+            name="expiryMM"
             placeholder="MM"
+            onChange={(e) => setMonth(e.target.value)}
+            maxLength="2"
             required
           />
+          <label htmlFor="expiryYY"></label>
           <input
             className="exp-input"
             type="text"
-            id="expiry"
-            name="expiry"
+            id="expiryYY"
+            name="expiryYY"
             placeholder="YY"
+            onChange={(e) => setYear(e.target.value)}
+            maxLength="2"
             required
           />
-          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" required />
+          
+          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" maxLength="3" required />
         </div>
+
+          <div>
+            {!isValid ?  (
+              <p className="alert-expiry active">Expiry date must be in the future</p>
+            ) : null}
+            
+          </div>
         <input className="confirm-button" type="submit" value="Confirm" />
       </form>
     </div>
-  )
-}
+    )
+  }
+
 
 export default CardDetailsForm
