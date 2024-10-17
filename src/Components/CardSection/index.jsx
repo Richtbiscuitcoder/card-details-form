@@ -3,7 +3,7 @@ import bgDesktop from "../../assets/images/bg-main-desktop.png"
 
 import "./styles.css"
 
-const CardSection = ({ name, cardNumber, month, year }) => {
+const CardSection = ({ name, cardNumber, month, year, cvc }) => {
   return (
     <div className="grid-container">
       <div className="bg-gradient"></div>
@@ -19,23 +19,11 @@ const CardSection = ({ name, cardNumber, month, year }) => {
         </div>
       </div>
       <div className="card-back">
-        <p className="csv">000</p>
+        <p className="csv">{cvc}</p>
       </div>
     </div>
   )
 
-  // return (
-  // <div className="border-box">
-  //     <img src={bgDesktop} alt="background color gradient" className="background" />
-  //     <div className="card-front">
-
-  //         <div className="white-ball"></div>
-  //         <div className="hollow-ball"></div>
-  //     </div>
-  //     <div className="card-back">
-
-  //     </div>
-  // </div>)
 }
 
 export default CardSection

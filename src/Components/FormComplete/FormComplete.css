@@ -1,0 +1,19 @@
+.form-complete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: 500;
+    color: hsl(278, 21%, 58%);
+}
+
+.confirm-button {
+    width: 300px;
+}
+
+.thanks {
+    font-weight: 400;
+    margin-bottom: 0;
+    color: hsl(278, 68%, 20%);
+}

@@ -92,13 +92,13 @@ input::placeholder {
   color: hsl(270, 3%, 87%);
 }
 
-.alert-name, .alert-number, .alert-expiry{
+.alert-name, .alert-number, .alert-expiry, .alert-cvc{
   color: hsl(0, 100%, 66%);
   visibility: hidden;
   margin: 5px 0px 10px 0px;
   font-size: 1rem;
 }
 
-.alert-name.active, .alert-number.active, .alert-expiry.active {
+.alert-name.active, .alert-number.active, .alert-expiry.active, .alert-cvc.active {
   visibility: visible;
 }
