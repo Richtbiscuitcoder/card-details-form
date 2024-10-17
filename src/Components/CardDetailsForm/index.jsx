@@ -1,47 +1,42 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "./styles.css";
 
-const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, year, setCvc, setIsFormSubmitted }) => {
-  function handleNameInput(e) {
-    setName(e.target.value.toUpperCase());
-    let input = e.target.value.toUpperCase();
-    var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+const CardDetailsForm = ({
+  setName,
+  setCardNumber,
+  setMonth,
+  setYear,
+  month,
+  year,
+  setCvc,
+  setIsFormSubmitted,
+}) => {
+  const [isValid, setIsValid] = useState(true);
+  const [validName, setValidName] = useState(true);
+  const [validCardNumber, setValidCardNumber] = useState(true);
+  const [validCvc, setValidCvc] = useState(true);
 
-    if (!regName.test(input)) {
-      document.querySelector(".alert-name").classList.add("active");
-      e.target.focus();
-      return false;
-    } else {
-      document.querySelector(".alert-name").classList.remove("active");
-      return true;
-    }
-  }
+  useEffect(() => {
+    validateExpiry();
+  }, [month, year]);
 
-  function handleCardNumberInput(e) {
+  const handleNameInput = (e) => {
+    const input = e.target.value.toUpperCase();
+    setName(input);
+    const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    setValidName(regName.test(input));
+  };
+
+  const handleCardNumberInput = (e) => {
     let cardNumber = e.target.value
       .replace(/[^\d]/g, "")
       .slice(0, 16)
       .replace(/(\d{4})/g, "$1 ")
       .trim();
     setCardNumber(cardNumber);
-    var regCard = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/;
-
-    if (!regCard.test(cardNumber)) {
-      document.querySelector(".alert-number").classList.add("active");
-      e.target.focus();
-      console.log(false);
-    } else {
-      document.querySelector(".alert-number").classList.remove("active");
-      return true;
-    }
-  }
-
-  const [isValid, setIsValid] = useState(true);
-
-  useEffect(() => {
-    validateExpiry();
-  }, [month, year]);
+    const regCard = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/;
+    setValidCardNumber(regCard.test(cardNumber));
+  };
 
   const validateExpiry = () => {
     if (month.length === 2 && year.length === 2) {
@@ -54,65 +49,43 @@ const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, yea
           parseInt(month, 10) - 1,
           1
         );
-        console.log(currentDate);
-        console.log(expiryDate);
         setIsValid(expiryDate > currentDate);
       } else {
-       setIsValid(false);
-       return false
+        setIsValid(false);
       }
     } else {
       setIsValid(true);
-      return true
     }
   };
 
-  function handleCardNumberInput(e) {
-    let cardNumber = e.target.value
-      .replace(/[^\d]/g, "")
-      .slice(0, 16)
-      .replace(/(\d{4})/g, "$1 ")
-      .trim();
-    setCardNumber(cardNumber);
-    var regCard = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/;
-
-    if (!regCard.test(cardNumber)) {
-      document.querySelector(".alert-number").classList.add("active");
-      e.target.focus();
-      console.log(false);
-    } else {
-      document.querySelector(".alert-number").classList.remove("active");
-      return true;
-    }
-  }
-
-  function handleCVC(e) {
-    let cvcNumber = e.target.value
-      .slice(0, 3)
-      .trim();
+  const handleCVC = (e) => {
+    let cvcNumber = e.target.value.slice(0, 3).trim();
     setCvc(cvcNumber);
-    var regCvc = /^[0-9]{3}$/;
-    if (!regCvc.test(cvcNumber)) {
-      document.querySelector(".alert-cvc").classList.add("active");
-      e.target.focus();
-      console.log("cvc is wrong");
-    } else {
-      document.querySelector(".alert-cvc").classList.remove("active");
-      return true;
-    }
-  }
+    const regCvc = /^[0-9]{3}$/;
+    setValidCvc(regCvc.test(cvcNumber));
+  };
 
-  function handleFormSubmit(e) {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (handleNameInput && handleCardNumberInput && validateExpiry && handleCVC) {
-      setIsFormSubmitted(true);
-    }
-  }
 
+    if (
+      validName &&
+      validCardNumber &&
+      isValid &&
+      validCvc
+    ) {
+      setIsFormSubmitted(true);
+    } else {
+      if (!validName) alert("Please enter a valid name (first and last).");
+      if (!validCardNumber) alert("Please enter a valid card number.");
+      if (!isValid) alert("Please enter a valid expiry date.");
+      if (!validCvc) alert("Please enter a valid CVC.");
+    }
+  };
 
   return (
     <div className="card-form-container">
-      <form className="card-form" action="">
+      <form className="card-form" onSubmit={handleFormSubmit}>
         <label htmlFor="cardholdername">CARDHOLDER NAME</label>
         <input
           onChange={handleNameInput}
@@ -123,9 +96,10 @@ const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, yea
           placeholder="e.g. Jane Appleseed"
           required
         />
-        <p className="alert-name">
+        <p className={`alert-name ${!validName ? 'active' : ''}`}>
           <small>Please enter your full name (first & last name).</small>
         </p>
+
         <label htmlFor="cardnumber">CARD NUMBER</label>
         <input
           onChange={handleCardNumberInput}
@@ -138,9 +112,10 @@ const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, yea
           required
           maxLength="16"
         />
-        <p className="alert-number">
-          <small>Please add a valid 16 digit card number.</small>
+        <p className={`alert-number ${!validCardNumber ? 'active' : ''}`}>
+          <small>Please add a valid 16-digit card number.</small>
         </p>
+
         <div className="exp-cvc-labels">
           <label className="exp-label" htmlFor="expiryMM">
             EXP. DATE (MM/YY)
@@ -160,7 +135,6 @@ const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, yea
             maxLength="2"
             required
           />
-          <label htmlFor="expiryYY"></label>
           <input
             className="exp-input"
             type="text"
@@ -178,21 +152,22 @@ const CardDetailsForm = ({ setName, setCardNumber, setMonth, setYear, month, yea
             name="cvc"
             placeholder="e.g. 123"
             maxLength="3"
-            
             onChange={handleCVC}
             required
           />
         </div>
 
         <div>
-          {!isValid ? (
+          {!isValid && (
             <p className="alert-expiry active">Enter a valid expiry date</p>
-          ) : null}
+          )}
         </div>
         <div>
-          <p className="alert-cvc">Please enter a valid 3 digit CVC.</p>
+          <p className={`alert-cvc ${!validCvc ? 'active' : ''}`}>
+            Please enter a valid 3-digit CVC.
+          </p>
         </div>
-        <input className="confirm-button" type="submit" value="Confirm" onClick={handleFormSubmit}/>
+        <input className="confirm-button" type="submit" value="Confirm" />
       </form>
     </div>
   );
