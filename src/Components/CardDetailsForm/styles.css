@@ -1,17 +1,16 @@
 
-
 .card-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid yellow;
+  width: 500px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .card-form-container {
-    width: 100vw;
-    max-width: 500px;
-    margin: auto;
+    width: 100%;
+    align-self: center;
   }
   }
 
@@ -21,9 +20,9 @@
   justify-content: center;
   align-items: start;
   width: 500px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .card-form {
     width: 100%;
 
