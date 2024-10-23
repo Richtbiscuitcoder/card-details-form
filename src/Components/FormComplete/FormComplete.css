@@ -1,6 +1,7 @@
 .form-complete-container {
     display: flex;
     justify-content: center;
+    width: 50%;
 }
 
 .form-complete {

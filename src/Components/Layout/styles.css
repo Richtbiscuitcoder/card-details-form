@@ -1,0 +1,12 @@
+.desktop-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+@media (max-width: 516px) {
+    .desktop-container {
+        display: flex;
+        flex-direction: column;
+    }
+  }

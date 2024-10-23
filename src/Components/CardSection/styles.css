@@ -6,8 +6,16 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 3rem;
   overflow: clip;
+  max-width: 516px;
   min-width: 750px;
+  border: 1px solid red;
 }
+
+@media screen and (max-width: 800px) {
+  .grid-container {
+    min-height: 30vh;
+  }
+  }
 
 .bg-gradient {
   background-image: url("src/assets/images/bg-main-desktop.png");
